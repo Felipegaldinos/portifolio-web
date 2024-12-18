@@ -10,6 +10,7 @@
 <body>
   <!-- Navegação -->
   <header>
+    <button class="menu-toggle" aria-label="Abrir menu">&#9776;</button>
     <nav>
       <ul class="nav-links">
         <li><a href="#home">Início</a></li>
@@ -131,6 +132,11 @@
           target.scrollIntoView({ behavior: 'smooth' });
         }
       });
+    });
+
+    // Menu Toggle para Responsividade
+    document.querySelector('.menu-toggle').addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.toggle('active');
     });
   </script>
 </body>
