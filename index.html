@@ -99,10 +99,10 @@
   <!-- Seção Contato -->
   <section id="contact">
     <h2>Entre em Contato</h2>
-    <form action="#" method="post">
-      <input type="text" placeholder="Seu Nome" required>
-      <input type="email" placeholder="Seu Email" required>
-      <textarea placeholder="Sua Mensagem" required></textarea>
+    <form id="contact-form">
+      <input id="name" type="text" placeholder="Seu Nome" required>
+      <input id="email" type="email" placeholder="Seu Email" required>
+      <textarea id="message" placeholder="Sua Mensagem" required></textarea>
       <button type="submit">Enviar</button>
     </form>
     <p>Ou conecte-se comigo:</p>
@@ -139,5 +139,38 @@
       document.querySelector('.nav-links').classList.toggle('active');
     });
   </script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  // Inicializar o EmailJS com a sua chave pública
+  emailjs.init("f58jaXQCRd8Ttvvt1");
+
+  // Capturar o evento de envio do formulário
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Impede o envio padrão do formulário
+
+    // Coletar os valores dos campos do formulário
+    const params = {
+      to_name: "Conexão Tech", // Nome do destinatário
+      from_name: document.getElementById('name').value, // Nome do remetente
+      email: document.getElementById('email').value, // E-mail do remetente
+      message: document.getElementById('message').value // Mensagem
+    };
+
+    // Substitua pelos seus IDs do EmailJS
+    const serviceID = "service_ju9tcek";
+    const templateID = "template_fyh8qcl";
+
+    // Enviar o e-mail
+    emailjs.send(serviceID, templateID, params)
+      .then(function(response) {
+        alert('Mensagem enviada com sucesso!');
+        console.log('Sucesso:', response.status, response.text);
+      })
+      .catch(function(error) {
+        alert('Erro ao enviar mensagem. Tente novamente.');
+        console.error('Erro:', error);
+      });
+  });
+</script>
 </body>
 </html>
