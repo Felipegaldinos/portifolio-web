@@ -81,15 +81,6 @@ header .nav-links a:hover {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.hero-section .btn.primary {
-  background-color: #d1422f;
-  color: #ffffff;
-}
-
-.hero-section .btn.primary:hover {
-  background-color: #d1422f;
-}
-
 .hero-section .btn.secondary {
   border: 2px solid #d1422f;
   color: #d1422f;

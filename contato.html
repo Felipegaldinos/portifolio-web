@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+     <!-- Navegação -->
+  <header>
+    <button class="menu-toggle" aria-label="Abrir menu">&#9776;</button>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="service.html">Serviços</a></li>
+        <li><a href="projetos.html">Projetos</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+   <!-- Seção Contato -->
+   <section id="contact">
+    <h2>Entre em Contato</h2>
+    <form id="contact-form">
+      <input id="name" type="text" placeholder="Seu Nome" required>
+      <input id="email" type="email" placeholder="Seu Email" required>
+      <textarea id="message" placeholder="Sua Mensagem" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <p>Ou conecte-se comigo:</p>
+    <div class="social-links">
+      <a href="https://github.com/felipegaldinos">GitHub One</a>
+      <a href="https://github.com/gabriel-jry">GitHub Two</a>
+      <a href="mailto:prodevprojec84@gmail.com">Email</a>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>© 2024 Conexão Tech. Todos os direitos reservados.</p>
+    <p>Desenvolvido por Felipe Galdino e Gabriel Jry.</p>
+    <p>CONTATOS:</p>
+    <p>(84) 9 8849-0890</p>
+    <p>(84) 9 9202-9771</p>
+  </footer>
+
+   <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Menu Toggle para Responsividade
+    document.querySelector('.menu-toggle').addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.toggle('active');
+    });
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  // Inicializar o EmailJS com a sua chave pública
+  emailjs.init("f58jaXQCRd8Ttvvt1");
+
+  // Capturar o evento de envio do formulário
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Impede o envio padrão do formulário
+
+    // Coletar os valores dos campos do formulário
+    const params = {
+      to_name: "Conexão Tech", // Nome do destinatário
+      from_name: document.getElementById('name').value, // Nome do remetente
+      email: document.getElementById('email').value, // E-mail do remetente
+      message: document.getElementById('message').value // Mensagem
+    };
+
+    // Substitua pelos seus IDs do EmailJS
+    const serviceID = "service_ju9tcek";
+    const templateID = "template_fyh8qcl";
+
+    // Enviar o e-mail
+    emailjs.send(serviceID, templateID, params)
+      .then(function(response) {
+        alert('Mensagem enviada com sucesso!');
+        console.log('Sucesso:', response.status, response.text);
+      })
+      .catch(function(error) {
+        alert('Erro ao enviar mensagem. Tente novamente.');
+        console.error('Erro:', error);
+      });
+  });
+</script>
+</body>
+</html>
